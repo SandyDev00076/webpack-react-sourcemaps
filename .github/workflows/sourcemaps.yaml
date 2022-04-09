@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  build:
+  store_sourcemaps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,9 +15,6 @@ jobs:
         run: npm install
       - name: Build the app
         run: npm run build:source
-  store_sourcemaps:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/upload-artifact@v3
         with:
           name: source-maps
