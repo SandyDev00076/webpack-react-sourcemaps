@@ -1,0 +1,27 @@
+.greeting {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 10px 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+
+  background-color: #333;
+}
+
+.panel {
+  padding: 32px;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  text-align: center;
+}
+
+.secondLine {
+  color: #cecece;
+  font-weight: 400;
+  margin: 0;
+}

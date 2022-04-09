@@ -1,0 +1,43 @@
+{
+  "name": "webpack-react-typescript-sass-modules",
+  "version": "1.0.0",
+  "description": "A boilerplate for React application which uses tsx and scss modules, and is bundled via webpack without CRA.",
+  "main": "src/index.tsx",
+  "scripts": {
+    "serve": "webpack serve --config webpack/webpack.config.js --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SandyDev00076/webpack-react-typescript-sass-modules.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SandyDev00076/webpack-react-typescript-sass-modules/issues"
+  },
+  "homepage": "https://github.com/SandyDev00076/webpack-react-typescript-sass-modules#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.0",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.4.4",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
