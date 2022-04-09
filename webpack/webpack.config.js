@@ -44,7 +44,6 @@ module.exports = {
     path: path.resolve(__dirname, "..", "./build"),
     filename: "output.js",
   },
-  devtool: "source-map",
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "..", "./public/index.html"),

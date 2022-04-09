@@ -1,24 +1,25 @@
 {
-  "name": "webpack-react-typescript-sass-modules",
+  "name": "webpack-react-sourcemaps",
   "version": "1.0.0",
   "description": "A boilerplate for React application which uses tsx and scss modules, and is bundled via webpack without CRA.",
   "main": "src/index.tsx",
   "scripts": {
     "serve": "webpack serve --config webpack/webpack.config.js --mode=development --open",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack/webpack.config.js --mode=production"
+    "build": "webpack --config webpack/webpack.config.js --mode=production",
+    "build:source": "webpack --config webpack/webpack.config.js --mode=production --devtool=source-map"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SandyDev00076/webpack-react-typescript-sass-modules.git"
+    "url": "git+https://github.com/SandyDev00076/webpack-react-sourcemaps.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SandyDev00076/webpack-react-typescript-sass-modules/issues"
+    "url": "https://github.com/SandyDev00076/webpack-react-sourcemaps/issues"
   },
-  "homepage": "https://github.com/SandyDev00076/webpack-react-typescript-sass-modules#readme",
+  "homepage": "https://github.com/SandyDev00076/webpack-react-sourcemaps#readme",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
