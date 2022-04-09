@@ -1,2 +1,4 @@
-# webpack-react-typescript-sass-modules
-A boilerplate for React application which uses tsx and scss modules, and is bundled via webpack without CRA.
+# webpack-react-sourcemaps
+
+A PoC to provide a secure solution for generating sourcemaps in prod mode so that only
+valid devs are able to look at the source code
