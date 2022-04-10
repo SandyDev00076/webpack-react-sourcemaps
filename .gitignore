@@ -4,3 +4,4 @@ build
 
 # zipped source maps
 backend/source-maps.zip
+backend/output.js.map

@@ -3,42 +3,60 @@ const PORT = 5050;
 // Github related config
 const USER = "SandyDev00076";
 const REPO = "webpack-react-sourcemaps";
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN = "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";
+const SOURCE_MAP_ARTIFACT_NAME = "source-maps";
 
 const download = require("download");
 const express = require("express");
 const fetch = require("node-fetch");
+const streamZip = require("node-stream-zip");
+
 const app = express();
+let zip;
 
 async function getSourceMapFromCIServer() {
-  const res = await fetch(
-    `https://api.github.com/repos/${USER}/${REPO}/actions/artifacts`
-  );
-  const data = await res.json();
-  // filter out artifacts containing name as source-maps
-  const sourceMapArtifacts = data.artifacts.filter(
-    (artifact) => artifact.name === "source-maps"
-  );
-  if (sourceMapArtifacts.length === 0) {
-    throw new Error("No source maps found from the CI server");
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${USER}/${REPO}/actions/artifacts`
+    );
+    const data = await res.json();
+    // filter out artifacts containing name as source-maps
+    const sourceMapArtifacts = data.artifacts.filter(
+      (artifact) => artifact.name === SOURCE_MAP_ARTIFACT_NAME
+    );
+    if (sourceMapArtifacts.length === 0) {
+      throw new Error("No source maps found from the CI server");
+    }
+
+    // get the relevant artifact entry (here, taking the first entry, but you can find out the latest one of these)
+    const relevantArtifact = sourceMapArtifacts[0];
+
+    // get the archive download URL from the artifact
+    const artifactArchiveURL = relevantArtifact["archive_download_url"];
+
+    // download the archive in the current location only
+    await download(artifactArchiveURL, `${__dirname}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+
+    // extract the zip file
+    zip = new streamZip.async({
+      file: `${SOURCE_MAP_ARTIFACT_NAME}.zip`,
+    });
+  } catch (e) {
+    console.error(e);
   }
-
-  // get the relevant artifact entry (here, taking the first entry, but you can find out the latest one of these)
-  const relevantArtifact = sourceMapArtifacts[0];
-
-  // get the archive download URL from the artifact
-  const artifactArchiveURL = relevantArtifact["archive_download_url"];
-
-  // download the archive in the current location only
-  await download(artifactArchiveURL, `${__dirname}`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-    },
-  });
 }
 
-app.get("/:name", (req, res) => {
-  console.log(req.params.name);
+app.get("/:name", async (req, res) => {
+  if (!zip) {
+    res.sendStatus(404);
+  } else {
+    await zip.extract(req.params.name, req.params.name);
+    await zip.close();
+  }
 });
 
 app.listen(PORT, () => {
