@@ -18,7 +18,9 @@ A line is appended to the file which is a pragma indicating the location to fetc
 
 **How do we change this LOCATION to point to our local server which will fetch the source-map ?**
 There is a plugin included in webpack - **SourceMapDevToolPlugin** which enables more fine grained control of _source map generation_. There you can provide a configuration like this -
-**[webpack source map dev tool plugin config](webpackSourceMapPluginConfig.PNG)**
+
+
+![webpack source map dev tool plugin config](https://github.com/SandyDev00076/webpack-react-sourcemaps/blob/main/webpackSourceMapPluginConfig.png)
 
 So now, every time browser open the bundle, and dev tools have been opened, a request will be made to `localhost:5050/<file-name>`.
 
