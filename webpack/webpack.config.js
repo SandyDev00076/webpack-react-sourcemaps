@@ -1,8 +1,7 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { SourceMapDevToolPlugin } = require("webpack");
 
-module.exports = (env, argv) => {
+module.exports = (env) => {
   return {
     entry: path.resolve(__dirname, "../src/index.tsx"),
     resolve: {
@@ -11,6 +10,7 @@ module.exports = (env, argv) => {
     devServer: {
       port: 3010,
     },
+    devtool: env.ENABLE_SOURCE_MAPS ? "source-map" : false,
     module: {
       rules: [
         {
@@ -50,13 +50,6 @@ module.exports = (env, argv) => {
       new HTMLWebpackPlugin({
         template: path.resolve(__dirname, "..", "./public/index.html"),
       }),
-      argv.mode === "production"
-        ? new SourceMapDevToolPlugin({
-            // this is the url of our local sourcemap server
-            publicPath: "http://localhost:5050/",
-            filename: "[file].map",
-          })
-        : new SourceMapDevToolPlugin({}),
     ],
   };
 };
