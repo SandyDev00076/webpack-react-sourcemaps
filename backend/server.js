@@ -3,7 +3,7 @@ const PORT = 5050;
 // Github related config
 const USER = "SandyDev00076";
 const REPO = "webpack-react-sourcemaps";
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN = "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";
 const SOURCE_MAP_ARTIFACT_NAME = "source-maps";
 
 const download = require("download");
@@ -54,8 +54,10 @@ app.get("/:name", async (req, res) => {
   if (!zip) {
     res.sendStatus(404);
   } else {
-    await zip.extract(req.params.name, req.params.name);
+    // await zip.extract(req.params.name, req.params.name);
+    const data = await zip.entryData(req.params.name);
     await zip.close();
+    res.json(JSON.parse(data.toString));
   }
 });
 
