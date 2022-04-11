@@ -50,11 +50,13 @@ async function getSourceMapFromCIServer() {
   }
 }
 
+// this will get invoked as soon as dev tools are opened, and the file whose source-maps
+// are required will get supplied to the name param
 app.get("/:name", async (req, res) => {
   if (!zip) {
     res.sendStatus(404);
   } else {
-    // await zip.extract(req.params.name, req.params.name);
+    // Below line means -> get the file with the required name from the archive
     const data = await zip.entryData(req.params.name);
     await zip.close();
     res.json(JSON.parse(data.toString()));
