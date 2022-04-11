@@ -1,8 +1,6 @@
 const PORT = 5050;
 
-// Github related config
-const USER = "SandyDev00076";
-const REPO = "webpack-react-sourcemaps";
+// name of source map artifact
 const SOURCE_MAP_ARTIFACT_NAME = "source-maps";
 
 const download = require("download");
@@ -17,7 +15,7 @@ let zip;
 async function getSourceMapFromCIServer() {
   try {
     const res = await fetch(
-      `https://api.github.com/repos/${USER}/${REPO}/actions/artifacts`
+      `https://api.github.com/repos/${process.env["GITHUB_USER"]}/${process.env["GITHUB_REPO"]}/actions/artifacts`
     );
     const data = await res.json();
     // filter out artifacts containing name as source-maps
