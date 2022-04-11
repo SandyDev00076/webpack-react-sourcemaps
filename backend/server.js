@@ -57,7 +57,7 @@ app.get("/:name", async (req, res) => {
     // await zip.extract(req.params.name, req.params.name);
     const data = await zip.entryData(req.params.name);
     await zip.close();
-    res.json(JSON.parse(data.toString));
+    res.json(JSON.parse(data.toString()));
   }
 });
 
